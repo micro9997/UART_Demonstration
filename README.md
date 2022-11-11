@@ -60,7 +60,7 @@ UART Demonstration using ATmega328P
 
 ### 03. Evaluation and Result
 
-![image_2](https://youtu.be/vCvw43UV1TY)
+[![image_2](https://github.com/micro9997/UART_Demonstration/blob/master/images/image_2.png)](https://youtu.be/vCvw43UV1TY)
 
 &nbsp;
 
