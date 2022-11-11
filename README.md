@@ -54,7 +54,68 @@ UART Demonstration using ATmega328P
 
 &nbsp;
 
+Setup the baud rate
 
+```c
+// Setup baud rate
+#define F_CPU   16000000
+#define BAUD    9600
+#define MYUBRR  F_CPU/16/BAUD-1
+
+// Write the baud rate to the UBRRnL and UBRRnH registers
+UBRR0H = (MYUBRR >> 8);
+UBRR0L = MYUBRR;
+```
+
+&nbsp;
+
+Enable the Tx and Rx
+
+```c
+// Rx and Tx Enable
+UCSR0B |= ((1 << TXEN0) | (1 << RXEN0));
+```
+
+&nbsp;
+
+Enable Rx interrupt
+
+```c
+// RX Complete Interrupt Enable
+UCSR0B |= (1 << RXCIE0);
+```
+
+&nbsp;
+
+Enable Global interrupt
+
+```c
+// Global interrupt enable
+SREG |= (1 << 7);
+```
+
+&nbsp;
+
+Read data
+
+```c
+ISR(USART_RX_vect) {
+    // Store the received data
+    rxData = UDR0;
+}
+```
+
+&nbsp;
+
+Write data
+
+```c
+// Wait for Tx buff empty flag
+while((UCSR0A & (1 << UDRE0)) == 0);
+
+// Store the data to Tx buffer
+UDR0 = data;
+```
 
 &nbsp;
 
@@ -67,12 +128,11 @@ UART Demonstration using ATmega328P
 ### 04. Conclusion
 
 Advantages
-* Spped
+* Need to write . .
 * 
 
 Disadvantages
-* Spped
+* Need to write . .
 * 
-
 
 &nbsp;
