@@ -68,7 +68,6 @@ int main(void) {
         if(dataReceivedFlag == 1) {
             uint8_t temp = rxData / 4;
             writePWM_PB1(temp);
-
             dataReceivedFlag = 0;
         }
         if((PIND & (1 << PIND5)) != 0 && buttonFlag == 1) {
@@ -79,6 +78,5 @@ int main(void) {
             buttonFlag = 1;
         }
     }
-
     return 0;
 }

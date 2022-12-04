@@ -64,8 +64,6 @@ int main(void) {
             tx((txData >> 8));
             tx((txData >> 0));
         }
-        
     }
-
     return 0;
 }

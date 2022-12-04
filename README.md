@@ -1,3 +1,4 @@
+
 # UART_Demonstration
 UART Demonstration using ATmega328P
 
@@ -15,7 +16,7 @@ UART Demonstration using ATmega328P
 
 &nbsp;
 
-***Register Description***
+***ATmega328P Register Description for UART***
 
 * UDRn – USART I/O Data Register n
 
@@ -54,7 +55,7 @@ UART Demonstration using ATmega328P
 
 &nbsp;
 
-Setup the baud rate
+*Setup the baud rate*
 
 ```c
 // Setup baud rate
@@ -69,7 +70,7 @@ UBRR0L = MYUBRR;
 
 &nbsp;
 
-Enable the Tx and Rx
+*Enable the Tx and Rx*
 
 ```c
 // Rx and Tx Enable
@@ -78,7 +79,7 @@ UCSR0B |= ((1 << TXEN0) | (1 << RXEN0));
 
 &nbsp;
 
-Enable Rx interrupt
+*Enable Rx interrupt*
 
 ```c
 // RX Complete Interrupt Enable
@@ -87,7 +88,7 @@ UCSR0B |= (1 << RXCIE0);
 
 &nbsp;
 
-Enable Global interrupt
+*Enable Global interrupt*
 
 ```c
 // Global interrupt enable
@@ -96,7 +97,7 @@ SREG |= (1 << 7);
 
 &nbsp;
 
-Read data
+*Read data*
 
 ```c
 ISR(USART_RX_vect) {
@@ -107,7 +108,7 @@ ISR(USART_RX_vect) {
 
 &nbsp;
 
-Write data
+*Write data*
 
 ```c
 // Wait for Tx buff empty flag
@@ -128,11 +129,14 @@ UDR0 = data;
 ### 04. Conclusion
 
 Advantages
-* Need to write . .
-* 
+* Easy to interface.
+* Less hardware: only 2 wires are required.
+* There are no software complications like addressing the slaves.
 
 Disadvantages
-* Need to write . .
-* 
+* Low speed other than SPI, I2C and USB.
+* should match the baud rate of the sender and receiver.
+* It's only intended for peer-to-peer communication and cannot connect to a third device.
+* It doesn't contain an acknowledgement mechanism, so it's hard to check whether the data is received by the receiver successfully.
 
 &nbsp;
